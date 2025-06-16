@@ -1,4 +1,5 @@
-import 'package:crafty_bay_project/app/app_colors.dart';
+
+import 'package:crafty_bay_project/app/app_routes.dart';
 import 'package:crafty_bay_project/app/app_theme.dart';
 import 'package:crafty_bay_project/features/auth/ui/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
@@ -16,13 +17,7 @@ class _CraftyBayState extends State<CraftyBay> {
     return MaterialApp(
       initialRoute: SplashScreen.name,
       theme: AppTheme.lightThemeData,
-      onGenerateRoute: (RouteSettings settings){
-        late final Widget screenWidget;
-        if(settings.name == SplashScreen.name){
-          screenWidget = SplashScreen();
-        }
-        return MaterialPageRoute(builder: (context) => screenWidget);
-      },
+      onGenerateRoute: AppRoutes.routes,
     );
   }
 }
