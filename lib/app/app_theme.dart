@@ -11,6 +11,7 @@ class AppTheme {
       textTheme: _textTheme,
       inputDecorationTheme: _inputDecorationTheme,
       elevatedButtonTheme: _elevatedButtonTheme,
+      appBarTheme: _appBarTheme,
     );
   }
 
@@ -18,6 +19,16 @@ class AppTheme {
     return TextTheme(
       titleLarge: TextStyle(
         fontSize: 28,
+        fontWeight: FontWeight.w600,
+        letterSpacing: 0.4,
+      ),
+      titleMedium: TextStyle(
+        fontSize: 24,
+        fontWeight: FontWeight.w600,
+        letterSpacing: 0.4,
+      ),
+      titleSmall: TextStyle(
+        fontSize: 20,
         fontWeight: FontWeight.w600,
         letterSpacing: 0.4,
       ),
@@ -63,6 +74,15 @@ class AppTheme {
           letterSpacing: 0.4,
           fontWeight: FontWeight.w500,
         ),
+      ),
+    );
+  }
+
+  static AppBarTheme get _appBarTheme {
+    return AppBarTheme(
+      titleTextStyle: TextStyle(
+        fontSize: 18,
+        color: Colors.black87,
       ),
     );
   }
