@@ -8,6 +8,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
+import '../../../common/ui/widgets/product_card.dart';
 import '../../widgets/app_bar_icon_button.dart';
 import '../../widgets/home_carousel_slider.dart';
 import '../../../common/ui/widgets/product_category_item.dart';
@@ -37,17 +38,60 @@ class _HomeScreenState extends State<HomeScreen> {
               const SizedBox(height: 16),
               HomeCarouselSlider(),
               const SizedBox(height: 16),
-              _buildSectionHeader(title: "All Categories", onTapSeeAll: () {
-                Get.find<MainBottomNavController>().moveToCategory();
-              }),
+              _buildSectionHeader(
+                title: "All Categories",
+                onTapSeeAll: () {
+                  Get.find<MainBottomNavController>().moveToCategory();
+                },
+              ),
               const SizedBox(height: 8),
               _getCategoryList(),
               _buildSectionHeader(title: "Popular", onTapSeeAll: () {}),
+              _getPopularProducts(),
               _buildSectionHeader(title: "Special", onTapSeeAll: () {}),
+              _getSpecialProducts(),
               _buildSectionHeader(title: "New", onTapSeeAll: () {}),
+              _getNewProducts(),
+              const SizedBox(height: 8),
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  Widget _getPopularProducts() {
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Row(
+        spacing: 8,
+        children: [1, 2, 3, 4].map((e) => ProductCard()).toList(),
+      ),
+    );
+  }
+
+  Widget _getSpecialProducts() {
+    return SizedBox(
+      height: 185,
+      child: ListView.separated(
+        scrollDirection: Axis.horizontal,
+        itemCount: 10,
+        itemBuilder: (context, index) {
+          return ProductCard();
+        },
+        separatorBuilder: (context, index) {
+          return SizedBox(width: 8);
+        },
+      ),
+    );
+  }
+
+  Widget _getNewProducts() {
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Row(
+        spacing: 8,
+        children: [1, 2, 3, 4].map((e) => ProductCard()).toList(),
       ),
     );
   }
@@ -87,10 +131,8 @@ class _HomeScreenState extends State<HomeScreen> {
         itemBuilder: (context, index) {
           return ProductCategoryItem();
         },
-        separatorBuilder: (context, index) => const SizedBox(width: 8,),
+        separatorBuilder: (context, index) => const SizedBox(width: 8),
       ),
     );
   }
 }
-
-

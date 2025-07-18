@@ -1,17 +1,20 @@
 import 'package:flutter/material.dart';
 
 import '../../../../app/app_colors.dart';
+import '../../../product/ui/screens/product_list_screen.dart';
 
 class ProductCategoryItem extends StatelessWidget {
-  const ProductCategoryItem({
-    super.key,
-  });
+  const ProductCategoryItem({super.key});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: (){
-        // TODO: Navigate to product list screen
+      onTap: () {
+        Navigator.pushNamed(
+          context,
+          ProductListScreen.name,
+          arguments: 'Computers',
+        );
       },
       child: Column(
         children: [
@@ -21,12 +24,15 @@ class ProductCategoryItem extends StatelessWidget {
               color: AppColors.themeColor.withOpacity(0.2),
               borderRadius: BorderRadius.circular(8),
             ),
-            child: Icon(Icons.computer, color: AppColors.themeColor,size: 32,),
+            child: Icon(Icons.computer, color: AppColors.themeColor, size: 32),
           ),
-          const SizedBox(height: 8,),
-          Text("Computers", style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-            color: AppColors.themeColor,
-          )),
+          const SizedBox(height: 8),
+          Text(
+            "Computers",
+            style: Theme.of(
+              context,
+            ).textTheme.bodyLarge?.copyWith(color: AppColors.themeColor),
+          ),
         ],
       ),
     );

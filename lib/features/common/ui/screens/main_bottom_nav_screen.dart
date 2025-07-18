@@ -1,6 +1,7 @@
 import 'package:crafty_bay_project/features/common/ui/controllers/main_bottom_nav_controller.dart';
 import 'package:crafty_bay_project/features/home/ui/screens/home_screen.dart';
 import 'package:crafty_bay_project/features/product/ui/screens/product_category_screen.dart';
+import 'package:crafty_bay_project/features/wish_list/ui/screens/wish_list_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -18,7 +19,7 @@ class _MainBottomNavScreenState extends State<MainBottomNavScreen> {
     HomeScreen(),
     ProductCategoryScreen(),
     ProductCategoryScreen(),
-    ProductCategoryScreen(),
+    WishListScreen(),
   ];
 
   @override
@@ -36,7 +37,10 @@ class _MainBottomNavScreenState extends State<MainBottomNavScreen> {
                 icon: Icon(Icons.category_outlined),
                 label: 'Category',
               ),
-              NavigationDestination(icon: Icon(Icons.shopping_cart), label: 'Cart'),
+              NavigationDestination(
+                icon: Icon(Icons.shopping_cart),
+                label: 'Cart',
+              ),
               NavigationDestination(
                 icon: Icon(Icons.favorite_outline_rounded),
                 label: 'Wishlist',
@@ -44,7 +48,7 @@ class _MainBottomNavScreenState extends State<MainBottomNavScreen> {
             ],
           ),
         );
-      }
+      },
     );
   }
 }
