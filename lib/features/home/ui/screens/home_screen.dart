@@ -9,10 +9,10 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
 import '../../../common/ui/widgets/product_card.dart';
-import '../../widgets/app_bar_icon_button.dart';
-import '../../widgets/home_carousel_slider.dart';
 import '../../../common/ui/widgets/product_category_item.dart';
-import '../../widgets/product_search_bar.dart';
+import '../widgets/app_bar_icon_button.dart';
+import '../widgets/home_carousel_slider.dart';
+import '../widgets/product_search_bar.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
