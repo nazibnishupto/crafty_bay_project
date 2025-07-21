@@ -1,3 +1,4 @@
+import 'package:crafty_bay_project/features/auth/ui/screens/sign_up_screen.dart';
 import 'package:crafty_bay_project/features/common/ui/screens/main_bottom_nav_screen.dart';
 import 'package:flutter/material.dart';
 import '../widgets/app_logo.dart';
@@ -12,18 +13,17 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-
   @override
   void initState() {
     super.initState();
     _moveToHomeScreen();
   }
-  
+
   Future<void> _moveToHomeScreen() async {
     await Future.delayed(Duration(seconds: 2));
-    Navigator.pushReplacementNamed(context, MainBottomNavScreen.name);
+    Navigator.pushReplacementNamed(context, SignUpScreen.name);
   }
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,8 +36,8 @@ class _SplashScreenState extends State<SplashScreen> {
               AppLogo(),
               Spacer(),
               CircularProgressIndicator(),
-              SizedBox(height: 20,),
-              Text('Version 1.0.0', style: TextStyle(color: Colors.grey),)
+              SizedBox(height: 20),
+              Text('Version 1.0.0', style: TextStyle(color: Colors.grey)),
             ],
           ),
         ),
@@ -45,5 +45,3 @@ class _SplashScreenState extends State<SplashScreen> {
     );
   }
 }
-
-
