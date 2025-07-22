@@ -13,6 +13,7 @@ import '../../../common/controllers/category_list_controller.dart';
 import '../../../common/ui/widgets/product_card.dart';
 import '../../../common/ui/widgets/product_category_item.dart';
 import '../controllers/home_slider_controller.dart';
+import '../controllers/popular_product_list_controller.dart';
 import '../widgets/app_bar_icon_button.dart';
 import '../widgets/home_carousel_slider.dart';
 import '../widgets/product_search_bar.dart';
@@ -77,12 +78,23 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget _getPopularProducts() {
-    return SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
-      child: Row(
-        spacing: 8,
-        //children: [1, 2, 3, 4].map((e) => ProductCard()).toList(),
-      ),
+    return GetBuilder<PopularProductController>(
+      builder: (popularProductController) {
+        return Visibility(
+          visible: popularProductController.inProgress == false,
+          replacement: CenteredCircularProgressIndicator(),
+          child: SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              spacing: 8,
+              children:
+                  popularProductController.productModelList
+                      .map((product) => ProductCard(productModel: product))
+                      .toList(),
+            ),
+          ),
+        );
+      },
     );
   }
 

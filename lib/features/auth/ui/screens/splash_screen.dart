@@ -2,6 +2,9 @@ import 'package:crafty_bay_project/features/auth/ui/screens/login_screen.dart';
 import 'package:crafty_bay_project/features/auth/ui/screens/sign_up_screen.dart';
 import 'package:crafty_bay_project/features/common/ui/screens/main_bottom_nav_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import '../../../common/controllers/auth_controller.dart';
 import '../widgets/app_logo.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -22,7 +25,8 @@ class _SplashScreenState extends State<SplashScreen> {
 
   Future<void> _moveToLoginScreen() async {
     await Future.delayed(Duration(seconds: 2));
-    Navigator.pushReplacementNamed(context, MainBottomNavScreen.name);
+    await Get.find<AuthController>().getUserData();
+    Navigator.pushReplacementNamed(context, LoginScreen.name);
   }
 
   @override

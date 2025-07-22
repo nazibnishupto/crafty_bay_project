@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../home/ui/controllers/home_slider_controller.dart';
+import '../../../home/ui/controllers/popular_product_list_controller.dart';
 import '../../controllers/category_list_controller.dart';
 
 class MainBottomNavScreen extends StatefulWidget {
@@ -29,8 +30,11 @@ class _MainBottomNavScreenState extends State<MainBottomNavScreen> {
   @override
   void initState() {
     super.initState();
-    Get.find<HomeSliderController>().getHomeSliders();
-    Get.find<CategoryListController>().getCategoryList();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      Get.find<HomeSliderController>().getHomeSliders();
+      Get.find<CategoryListController>().getCategoryList();
+      Get.find<PopularProductController>().getPopularProducts();
+    });
   }
 
   @override

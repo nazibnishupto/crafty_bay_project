@@ -89,6 +89,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               onPressed: _onTapLoginButton,
                               child: Text('Login'),
                             ),
+                            const SizedBox(height: 8),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [

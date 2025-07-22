@@ -24,6 +24,7 @@ dependencies:
   logger: ^2.5.0
   pin_code_fields: ^8.0.1
   shared_preferences: ^2.5.3
+  flutter_sslcommerz: ^2.5.1
 
 dev_dependencies:
   flutter_test:
