@@ -102,7 +102,14 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                   ],
                                 ),
                                 TextButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    Navigator.pushNamed(
+                                      context,
+                                      ReviewsScreen.name,
+                                      arguments: '123',
+                                    );
+                                  },
+
                                   child: Text('Reviews'),
                                 ),
                                 Card(

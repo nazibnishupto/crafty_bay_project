@@ -27,7 +27,18 @@ class ProductCategoryItem extends StatelessWidget {
               color: AppColors.themeColor.withOpacity(0.2),
               borderRadius: BorderRadius.circular(8),
             ),
-            child: Image.network(categoryModel.iconUrl, width: 32, height: 32),
+            child: Image.network(
+              categoryModel.iconUrl,
+              width: 32,
+              height: 32,
+              errorBuilder: (context, error, stackTrace) {
+                return Icon(
+                  Icons.image_not_supported,
+                  size: 32,
+                  color: Colors.grey,
+                );
+              },
+            ),
           ),
           const SizedBox(height: 8),
           Text(
