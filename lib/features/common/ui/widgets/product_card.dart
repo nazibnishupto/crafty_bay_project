@@ -2,10 +2,14 @@ import 'package:flutter/material.dart';
 
 import '../../../../app/app_colors.dart';
 import '../../../../app/asset_paths.dart';
+import '../../../../app/constants.dart';
 import '../../../product/ui/screens/product_details_screen.dart';
+import '../../models/product_model.dart';
 
 class ProductCard extends StatelessWidget {
-  const ProductCard({super.key});
+  const ProductCard({super.key, required this.productModel});
+
+  final ProductModel productModel;
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +18,7 @@ class ProductCard extends StatelessWidget {
         Navigator.pushNamed(
           context,
           ProductDetailsScreen.name,
-          arguments: '123',
+          arguments: productModel.id,
         );
       },
       child: Container(
@@ -43,14 +47,14 @@ class ProductCard extends StatelessWidget {
                 ),
               ),
               padding: EdgeInsets.all(16),
-              child: Image.asset(AssetPaths.dummyNikeShoePng, height: 80),
+              child: Image.network(productModel.photoUrls.first, height: 80),
             ),
             Padding(
               padding: const EdgeInsets.all(6.0),
               child: Column(
                 children: [
                   Text(
-                    "Nike ER345T - New Model 2025",
+                    productModel.title,
                     maxLines: 1,
                     style: TextStyle(
                       overflow: TextOverflow.ellipsis,
@@ -62,7 +66,7 @@ class ProductCard extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        '৳ 100',
+                        '${Constants.takaSign}${productModel.currentPrice}',
                         style: TextStyle(
                           fontSize: 12,
                           fontWeight: FontWeight.w600,

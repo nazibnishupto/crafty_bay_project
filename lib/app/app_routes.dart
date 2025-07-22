@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 
 import '../features/auth/ui/screens/splash_screen.dart';
 import '../features/auth/ui/screens/verify_otp_screen.dart';
+import '../features/common/models/category_model.dart';
 import '../features/product/ui/screens/product_details_screen.dart';
 import '../features/product/ui/screens/product_list_screen.dart';
 
@@ -28,7 +29,7 @@ class AppRoutes {
     } else if (settings.name == MainBottomNavScreen.name) {
       screenWidget = MainBottomNavScreen();
     } else if (settings.name == ProductListScreen.name) {
-      final String category = settings.arguments as String;
+      final CategoryModel category = settings.arguments as CategoryModel;
       screenWidget = ProductListScreen(category: category);
     } else if (settings.name == ProductDetailsScreen.name) {
       final String productId = settings.arguments as String;

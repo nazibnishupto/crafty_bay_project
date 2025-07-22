@@ -1,3 +1,4 @@
+import 'package:crafty_bay_project/features/auth/ui/screens/login_screen.dart';
 import 'package:crafty_bay_project/features/auth/ui/screens/sign_up_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -6,6 +7,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import '../../../../core/ui/widgets/centered_circular_progress_indicator.dart';
 import '../../../../core/ui/widgets/snack_bar_message.dart';
+import '../../../common/ui/screens/main_bottom_nav_screen.dart';
 import '../../data/models/verify_otp_request_model.dart';
 import '../controller/verify_otp_controller.dart';
 import '../widgets/app_logo.dart';
@@ -103,7 +105,11 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
         model,
       );
       if (isSuccess) {
-        // Navigate to home
+        Navigator.pushNamedAndRemoveUntil(
+          context,
+          LoginScreen.name,
+          (predicate) => false,
+        );
       } else {
         showSnackBarMessage(
           context,

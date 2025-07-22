@@ -6,6 +6,9 @@ import 'package:crafty_bay_project/features/wish_list/ui/screens/wish_list_scree
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../home/ui/controllers/home_slider_controller.dart';
+import '../../controllers/category_list_controller.dart';
+
 class MainBottomNavScreen extends StatefulWidget {
   const MainBottomNavScreen({super.key});
 
@@ -22,6 +25,13 @@ class _MainBottomNavScreenState extends State<MainBottomNavScreen> {
     CartScreen(),
     WishListScreen(),
   ];
+
+  @override
+  void initState() {
+    super.initState();
+    Get.find<HomeSliderController>().getHomeSliders();
+    Get.find<CategoryListController>().getCategoryList();
+  }
 
   @override
   Widget build(BuildContext context) {

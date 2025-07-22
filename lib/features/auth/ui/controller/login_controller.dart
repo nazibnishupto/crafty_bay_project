@@ -1,14 +1,13 @@
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 
 import '../../../../app/urls.dart';
 import '../../../../core/services/network/network_client.dart';
 import '../../../common/controllers/auth_controller.dart';
 import '../../../common/models/user_model.dart';
-import '../../data/models/verify_otp_request_model.dart';
+import '../../data/models/login_request_model.dart';
 
-class VerifyOtpController extends GetxController {
+class LoginController extends GetxController {
   bool _inProgress = false;
 
   String? _errorMessage;
@@ -17,12 +16,12 @@ class VerifyOtpController extends GetxController {
 
   String? get errorMessage => _errorMessage;
 
-  Future<bool> verifyOtp(VerifyOtpRequestModel model) async {
+  Future<bool> login(LoginRequestModel model) async {
     bool isSuccess = false;
     _inProgress = true;
     update();
     final NetworkResponse response = await Get.find<NetworkClient>()
-        .postRequest(Urls.verifyOtpUrl, body: model.toJson());
+        .postRequest(Urls.loginUrl, body: model.toJson());
     if (response.isSuccess) {
       await Get.find<AuthController>().saveUserData(
         response.responseData!['data']['token'],

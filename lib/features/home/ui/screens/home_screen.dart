@@ -8,8 +8,11 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
+import '../../../../core/ui/widgets/centered_circular_progress_indicator.dart';
+import '../../../common/controllers/category_list_controller.dart';
 import '../../../common/ui/widgets/product_card.dart';
 import '../../../common/ui/widgets/product_category_item.dart';
+import '../controllers/home_slider_controller.dart';
 import '../widgets/app_bar_icon_button.dart';
 import '../widgets/home_carousel_slider.dart';
 import '../widgets/product_search_bar.dart';
@@ -36,7 +39,20 @@ class _HomeScreenState extends State<HomeScreen> {
               const SizedBox(height: 16),
               ProductSearchBar(),
               const SizedBox(height: 16),
-              HomeCarouselSlider(),
+              GetBuilder<HomeSliderController>(
+                builder: (sliderController) {
+                  if (sliderController.inProgress) {
+                    return SizedBox(
+                      height: 192,
+                      child: CenteredCircularProgressIndicator(),
+                    );
+                  }
+
+                  return HomeCarouselSlider(
+                    sliders: sliderController.sliderModelList,
+                  );
+                },
+              ),
               const SizedBox(height: 16),
               _buildSectionHeader(
                 title: "All Categories",
@@ -65,7 +81,7 @@ class _HomeScreenState extends State<HomeScreen> {
       scrollDirection: Axis.horizontal,
       child: Row(
         spacing: 8,
-        children: [1, 2, 3, 4].map((e) => ProductCard()).toList(),
+        //children: [1, 2, 3, 4].map((e) => ProductCard()).toList(),
       ),
     );
   }
@@ -77,7 +93,7 @@ class _HomeScreenState extends State<HomeScreen> {
         scrollDirection: Axis.horizontal,
         itemCount: 10,
         itemBuilder: (context, index) {
-          return ProductCard();
+          //return ProductCard();
         },
         separatorBuilder: (context, index) {
           return SizedBox(width: 8);
@@ -91,7 +107,7 @@ class _HomeScreenState extends State<HomeScreen> {
       scrollDirection: Axis.horizontal,
       child: Row(
         spacing: 8,
-        children: [1, 2, 3, 4].map((e) => ProductCard()).toList(),
+        //children: [1, 2, 3, 4].map((e) => ProductCard()).toList(),
       ),
     );
   }
@@ -123,15 +139,23 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget _getCategoryList() {
     return SizedBox(
       height: 100,
-      child: ListView.separated(
-        scrollDirection: Axis.horizontal,
-        itemCount: 10,
-        primary: false,
-        shrinkWrap: true,
-        itemBuilder: (context, index) {
-          return ProductCategoryItem();
+      child: GetBuilder<CategoryListController>(
+        builder: (controller) {
+          if (controller.initialLoadingInProgress) {
+            return CenteredCircularProgressIndicator();
+          }
+
+          return ListView.separated(
+            scrollDirection: Axis.horizontal,
+            itemCount: controller.homeCategoryListItemLength,
+            itemBuilder: (context, index) {
+              return ProductCategoryItem(
+                categoryModel: controller.categoryModelList[index],
+              );
+            },
+            separatorBuilder: (context, index) => const SizedBox(width: 8),
+          );
         },
-        separatorBuilder: (context, index) => const SizedBox(width: 8),
       ),
     );
   }

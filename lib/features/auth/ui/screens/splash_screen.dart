@@ -1,3 +1,4 @@
+import 'package:crafty_bay_project/features/auth/ui/screens/login_screen.dart';
 import 'package:crafty_bay_project/features/auth/ui/screens/sign_up_screen.dart';
 import 'package:crafty_bay_project/features/common/ui/screens/main_bottom_nav_screen.dart';
 import 'package:flutter/material.dart';
@@ -16,12 +17,12 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    _moveToHomeScreen();
+    _moveToLoginScreen();
   }
 
-  Future<void> _moveToHomeScreen() async {
+  Future<void> _moveToLoginScreen() async {
     await Future.delayed(Duration(seconds: 2));
-    Navigator.pushReplacementNamed(context, SignUpScreen.name);
+    Navigator.pushReplacementNamed(context, MainBottomNavScreen.name);
   }
 
   @override
